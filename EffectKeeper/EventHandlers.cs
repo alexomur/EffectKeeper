@@ -64,7 +64,8 @@ namespace EffectKeeper
             var effects = new List<Effect>();
             foreach (var effect in ev.Player.ActiveEffects)
             {
-                if (!_config.AllowedEffects.Contains(effect.GetEffectType()))
+                _config.NewAllowedEffects.TryGetValue(effect.GetEffectType(), out bool value);
+                if (!value)
                 {
                     continue;
                 }
