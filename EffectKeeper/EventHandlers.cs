@@ -21,7 +21,6 @@ namespace EffectKeeper
 {
     public class EventHandlers
     {
-        private readonly Config _config = Plugin.Instance.Config;
         private bool IsPlaying(Player player)
         {
             if (player.Role == RoleTypeId.None || player.Role == RoleTypeId.Overwatch ||
@@ -47,7 +46,6 @@ namespace EffectKeeper
             yield return Timing.WaitForSeconds(2);
 
             player.EnableEffects(effects);
-            
         }
         
         /*
@@ -59,19 +57,14 @@ namespace EffectKeeper
         {
             if (!IsPlaying(ev.Player)) return;
             
-            
-            
             var effects = new List<Effect>();
             foreach (var effect in ev.Player.ActiveEffects)
             {
-                _config.NewAllowedEffects.TryGetValue(effect.GetEffectType(), out bool value);
-                if (!value)
-                {
+                if (!Plugin.Instance.Config.AllowedEffects.Contains(effect.GetEffectType()))
+                { 
                     continue;
                 }
-                effects.Add(
-                    new Effect(effect.GetEffectType(), effect.Duration)
-                );
+                effects.Add(new Effect(effect.GetEffectType(), effect.Duration));
             }
 
 
