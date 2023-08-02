@@ -41,6 +41,7 @@ namespace EffectKeeper
 
         private void UnregisterEvents()
         {
+            Player.Escaping -= _handlers.OnEscaping;
             _handlers = null;
         }
     }
