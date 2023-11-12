@@ -1,3 +1,5 @@
+# OUTDATED
+
 # EffectKeeper
 EXILED SCP:SL A plugin that saves the player's effects after he has escaped.
 You can choose which effects will be saved after the escape in the config by adding `EffectType`s in `allowed_effects`.
