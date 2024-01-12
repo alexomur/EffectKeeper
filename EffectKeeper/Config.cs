@@ -11,7 +11,7 @@ namespace EffectKeeper
 
         public bool Debug { get; set; } = false;
    
-        [Description("Effects allowed to keep after respawning. Old system.")]
+        [Description("Effects allowed to keep after respawning")]
         public List<EffectType> AllowedEffects { get; set; } = new List<EffectType>()
         {
             EffectType.Scp1853,

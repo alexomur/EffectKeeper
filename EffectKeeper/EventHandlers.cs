@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
-using PlayerRoles;
 using Player = Exiled.API.Features.Player;
 
 using MEC;
@@ -14,16 +13,12 @@ namespace EffectKeeper
     {
         private bool IsPlaying(Player player)
         {
-            if (player.Role == RoleTypeId.None || player.Role == RoleTypeId.Overwatch ||
-                player.Role == RoleTypeId.Spectator)
-            {
-                return false;
-            }
-
             if (!player.IsConnected || !player.IsVerified)
             {
                 return false;
             }
+            
+            if (!player.Role.IsAlive) return false;
 
             return true;
         }
@@ -36,7 +31,7 @@ namespace EffectKeeper
         {
             yield return Timing.WaitForSeconds(2);
 
-            player.EnableEffects(effects);
+            player.SyncEffects(effects);
         }
         
         /*
